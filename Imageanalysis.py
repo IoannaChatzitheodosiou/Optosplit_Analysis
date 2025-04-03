@@ -10,6 +10,7 @@ from read_roi import read_roi_zip
 from pystackreg import StackReg
 import tifffile
 import sys
+import csv
 
 def image_listing(datapath):  #function that reads your images from the folder
     imagedata = datapath + "/*.tif" #how your image files look
@@ -42,7 +43,6 @@ def image_stacking (cropped_high, cropped_low): #function that crops the images
     # Combine the two crops into a 2-channel grayscale image
     try:
         combined_image = np.stack((cropped_high, aligned_low), axis=-1)  # Use np.stack to maintain grayscale
-        print(combined_image.shape)
     except:
         print(cropped_high.shape)
         print(aligned_low.shape)
@@ -57,30 +57,62 @@ def image_stacking (cropped_high, cropped_low): #function that crops the images
     aligned_low[aligned_low==0]= np.median (aligned_low)
     divided = aligned_low *1000/ cropped_high
     divided = divided.astype(np.uint16)
-    print (divided)
-    print ()
     divided2 = cropped_low *1000/ cropped_high
     divided2 = divided2.astype(np.uint16)
-    print (divided2)
-    print ()
     return combined, divided, divided2
  
 
 def process_tif(image_name, image, outputpath, roi_high, roi_low):
+    image_folder = image_name.replace(".tif","")
+    if not os.path.exists(outputpath + "/" + image_folder):
+        os.makedirs(outputpath + "/" + image_name.replace(".tif",""))
     image_low = apply_crop(roi_low, image)
     image_high = apply_crop(roi_high, image)
-    lowname = outputpath + "/" + image_name.replace(".tif","") + "_low.tif"
-    highname = outputpath + "/" + image_name.replace(".tif","") + "_high.tif"
-    stackname = outputpath + "/" + image_name.replace(".tif","") + "_stack.tif"
-    divname = outputpath + "/" + image_name.replace(".tif","") + "_divided.tif"
-    divname2 = outputpath + "/" + image_name.replace(".tif","") + "_divided_non_aligned.tif"
+    lowname = outputpath + "/" +  image_folder + '/' + image_folder  + "_low.tif"
+    highname = outputpath + "/" + image_folder + '/' + image_folder + "_high.tif"
+    stackname = outputpath + "/" + image_folder + '/' + image_folder + "_stack.tif"
+    divname = outputpath + "/" + image_folder + '/' + image_folder + "_divided.tif"
+    divname2 = outputpath + "/" + image_folder + '/' + image_folder + "_divided_non_aligned.tif"
     tifffile.imwrite(lowname, image_low, imagej=True)
     tifffile.imwrite(highname, image_high, imagej=True)
     stacked_image, divided, divided2 = image_stacking(image_high, image_low)
     tifffile.imwrite(stackname, stacked_image, imagej=True)
     tifffile.imwrite(divname, divided, imagej=True)
     tifffile.imwrite(divname2, divided2, imagej=True)
+    return divided
 
+def calculate_mean_value(image, image_name, output_path, contour_threshold=50):
+    image_folder = image_name.replace(".tif","")
+    if not os.path.exists(output_path + "/" + image_folder):
+        os.makedirs(output_path + "/" + image_name.replace(".tif",""))
+    contourname = output_path + "/" +  image_folder + '/' + image_folder  + "_contoured.tif"
+    ret, thresh = cv2.threshold(image,0,255,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
+    thresh_8bit = cv2.convertScaleAbs(thresh)
+
+    # Find contours
+    contours, _ = cv2.findContours(thresh_8bit, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours = [contour for contour in contours if len(contour)>contour_threshold]
+    thecontours=cv2.drawContours(image, contours, -1, (0,255,0),  2)
+    mean_values = []
+
+    # Iterate through each contour (particle)
+    for contour in contours:
+        # Create a mask for the current contour
+        mask = np.zeros_like(image)
+        cv2.drawContours(mask, [contour], -1, 255, thickness=cv2.FILLED)
+        
+        # Extract pixels within the contour
+        pixels = image[mask == 255]
+        pixels = pixels[pixels != 0]
+
+        # Calculate median value
+        mean_value = np.mean(pixels)
+        if mean_value==0:
+            print(pixels)
+        mean_values.append(mean_value)
+
+    tifffile.imwrite(contourname, thecontours, imagej=True)
+    return mean_values
 
 def main():
     if len(sys.argv)!=3:
@@ -94,8 +126,14 @@ def main():
         output_path = sys.argv[3]
     roi_high, roi_low = roi_selection(roipath)
     images = image_listing(images_path)
+    mean_values = []
     for image_name, image in images.items():
-        process_tif(image_name,image, output_path, roi_high, roi_low)
+        mean_values.extend(calculate_mean_value(process_tif(image_name,image, output_path, roi_high, roi_low), image_name, output_path))
+    with open(f'{output_path}/mean_values.csv', 'w') as f:
+        for value in mean_values:
+            f.write(str(value))
+            f.write(';')
+                           
 
 if __name__ == "__main__":
     main()
