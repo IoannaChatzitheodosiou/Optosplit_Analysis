@@ -86,8 +86,10 @@ def calculate_mean_value(image, image_name, output_path, contour_threshold=50):
     if not os.path.exists(output_path + "/" + image_folder):
         os.makedirs(output_path + "/" + image_name.replace(".tif",""))
     contourname = output_path + "/" +  image_folder + '/' + image_folder  + "_contoured.tif"
-    ret, thresh = cv2.threshold(image,0,255,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
-    thresh_8bit = cv2.convertScaleAbs(thresh)
+    ret, thresh = cv2.threshold(image,0,255,cv2.THRESH_BINARY_INV +cv2.THRESH_OTSU)
+    kernel = np.ones((3, 3), np.uint8) 
+    eroded = cv2.erode(thresh, kernel, iterations=4) #morphological erosion to decrease particle size
+    thresh_8bit = cv2.convertScaleAbs(eroded)
 
     # Find contours
     contours, _ = cv2.findContours(thresh_8bit, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -105,18 +107,18 @@ def calculate_mean_value(image, image_name, output_path, contour_threshold=50):
         pixels = image[mask == 255]
         pixels = pixels[pixels != 0]
 
-        # Calculate median value
+        # Calculate mean value
         mean_value = np.mean(pixels)
-        if mean_value==0:
-            print(pixels)
-        mean_values.append(mean_value)
+        if not np.isnan(mean_value):
+            mean_values.append(mean_value)
+        
 
     tifffile.imwrite(contourname, thecontours, imagej=True)
     return mean_values
 
 def main():
-    if len(sys.argv)!=3:
-        print(f'Number of arguments expected: 3. Number of arguments provided {len(sys.argv)}')
+    if len(sys.argv)!=4:
+        print(f'Number of arguments expected: 4. Number of arguments provided {len(sys.argv)}')
         images_path = input('Images path: ')
         roipath = input('ROI path: ')
         output_path = input('Output path: ')
