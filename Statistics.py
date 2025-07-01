@@ -7,7 +7,7 @@ from scipy.stats import f_oneway
 
 all_data = pd.DataFrame(columns=["strain", "measurement"])
 
-with open('565Tirf/csvpaths.yaml') as f:
+with open('csvpaths.yaml') as f:
     measurements = yaml.safe_load(f)
     for strain, measurements_list in measurements.items():
         for measurement in measurements_list:
@@ -21,7 +21,7 @@ with open('565Tirf/csvpaths.yaml') as f:
                     except:
                         pass
 
-sns.swarmplot(data=all_data, x="strain", y="measurement", hue="strain")
+sns.catplot(data=all_data, x="strain", y="measurement", hue="strain", kind="violin")
 plt.show()
 
 # One-way ANOVA

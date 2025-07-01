@@ -12,7 +12,6 @@ import tifffile
 import sys
 import csv
 
-
 def image_listing(datapath):  #function that reads your images from the folder
     imagedata = datapath + "/*.tif" #how your image files look
     imagelist = glob(imagedata) #makes a list of all the images in your folder
@@ -38,31 +37,15 @@ def apply_crop(roi, image): #function that crops the image into two, according t
     bottom_right_x = top_left_x + roi['width']
     return image[top_left_y:bottom_right_y, top_left_x:bottom_right_x]
 
-def crop_divided(divided):
-    #define crop area
-    height, width = divided.shape[:2]
-    center_x = width // 2
-    center_y = height // 2
-    # Compute half-size crop bounds
-    half_w = width // 4
-    half_h = height // 4
-    x1 = center_x - half_w
-    x2 = center_x + half_w
-    y1 = center_y - half_h
-    y2 = center_y + half_h
-    # Crop the image
-    cropped = divided[y1:y2, x1:x2]
-    return cropped
-
 def image_stacking (cropped_high, cropped_low): #function that crops the images
-    sr = StackReg(StackReg.AFFINE)
-    aligned_high = sr.register_transform(cropped_low, cropped_high)
+    sr = StackReg(StackReg.BILINEAR)
+    aligned_low = sr.register_transform(cropped_high, cropped_low)
     # Combine the two crops into a 2-channel grayscale image
     try:
-        combined_image = np.stack((aligned_high, cropped_low), axis=-1)  # Use np.stack to maintain grayscale
+        combined_image = np.stack((cropped_high, aligned_low), axis=-1)  # Use np.stack to maintain grayscale
     except:
-        print(cropped_low.shape)
-        print(aligned_high.shape)
+        print(cropped_high.shape)
+        print(aligned_low.shape)
 
     split1 = combined_image[:, :, 0]
     split2 = combined_image[:, :, 1]
@@ -71,14 +54,13 @@ def image_stacking (cropped_high, cropped_low): #function that crops the images
 
     combined = combined.astype(np.uint16)
 
-    aligned_high[aligned_high==0]= np.median (aligned_high)
-    divided =   aligned_high*1500 / cropped_low
+    aligned_low[aligned_low==0]= np.median (aligned_low)
+    divided = aligned_low *1000/ cropped_high
     divided = divided.astype(np.uint16)
-    divided = crop_divided(divided)
-    divided2 =  cropped_high*1500 /cropped_low 
+    divided2 = cropped_low *1000/ cropped_high
     divided2 = divided2.astype(np.uint16)
     return combined, divided, divided2
-    
+ 
 
 def process_tif(image_name, image, outputpath, roi_high, roi_low):
     image_folder = image_name.replace(".tif","")
@@ -100,34 +82,20 @@ def process_tif(image_name, image, outputpath, roi_high, roi_low):
     return divided
 
 def calculate_mean_value(image, image_name, output_path, contour_threshold=50):
-
     image_folder = image_name.replace(".tif","")
     if not os.path.exists(output_path + "/" + image_folder):
         os.makedirs(output_path + "/" + image_name.replace(".tif",""))
-    
     contourname = output_path + "/" +  image_folder + '/' + image_folder  + "_contoured.tif"
-    
-    norm_img = cv2.normalize(image, None, 0, 255, cv2.NORM_MINMAX)
-    image = norm_img.astype('uint8')
-    #Adaptive thresholding
-    thresh = cv2.adaptiveThreshold(image,maxValue=255, adaptiveMethod=cv2.ADAPTIVE_THRESH_MEAN_C,
-                                   thresholdType=cv2.THRESH_BINARY_INV,
-                                   blockSize=51,  # must be odd and tailored to feature size
-                                    C=5)
-    
+    ret, thresh = cv2.threshold(image,0,255,cv2.THRESH_BINARY_INV +cv2.THRESH_OTSU)
     kernel = np.ones((3, 3), np.uint8) 
-    eroded = cv2.erode(thresh, kernel, iterations=1) #morphological erosion to decrease particle size
-    kernel = np.ones((4, 4), np.uint8) 
-    expanded = cv2.dilate(eroded, kernel, iterations=3)
-    mean_values = []
-    
-    # Find contours
-    contours, _ = cv2.findContours(expanded, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    contours = [cnt for cnt in contours if len(cnt) > contour_threshold]
+    eroded = cv2.erode(thresh, kernel, iterations=4) #morphological erosion to decrease particle size
+    thresh_8bit = cv2.convertScaleAbs(eroded)
 
-    # Draw contours on a 3-channel image for visualization
-    color_image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
-    thecontours = cv2.drawContours(color_image, contours, -1, (0,255,0), 2)
+    # Find contours
+    contours, _ = cv2.findContours(thresh_8bit, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours = [contour for contour in contours if len(contour)>contour_threshold]
+    thecontours=cv2.drawContours(image, contours, -1, (0,255,0),  2)
+    mean_values = []
 
     # Iterate through each contour (particle)
     for contour in contours:
@@ -171,3 +139,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
