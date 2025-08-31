@@ -55,7 +55,7 @@ def crop_divided(divided):
     return cropped
 
 def image_stacking (cropped_high, cropped_low): #function that crops the images
-    sr = StackReg(StackReg.AFFINE)
+    sr = StackReg(StackReg.TRANSLATION)
     aligned_high = sr.register_transform(cropped_low, cropped_high)
     # Combine the two crops into a 2-channel grayscale image
     try:
@@ -99,8 +99,8 @@ def process_tif(image_name, image, outputpath, roi_high, roi_low):
     tifffile.imwrite(divname2, divided2, imagej=True)
     return divided
 
-def calculate_mean_value_and_areas(image, image_name, output_path, contour_threshold):
-    areas = []
+def calculate_mean_value(image, image_name, output_path, contour_threshold=50):
+
     image_folder = image_name.replace(".tif","")
     if not os.path.exists(output_path + "/" + image_folder):
         os.makedirs(output_path + "/" + image_name.replace(".tif",""))
@@ -124,8 +124,6 @@ def calculate_mean_value_and_areas(image, image_name, output_path, contour_thres
     # Find contours
     contours, _ = cv2.findContours(expanded, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     contours = [cnt for cnt in contours if len(cnt) > contour_threshold]
-    for c in contours:
-        areas.append(cv2.contourArea(c))
 
     # Draw contours on a 3-channel image for visualization
     color_image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
@@ -148,7 +146,7 @@ def calculate_mean_value_and_areas(image, image_name, output_path, contour_thres
         
 
     tifffile.imwrite(contourname, thecontours, imagej=True)
-    return mean_values, areas
+    return mean_values
 
 def main():
     if len(sys.argv)!=4:
@@ -163,18 +161,10 @@ def main():
     roi_high, roi_low = roi_selection(roipath)
     images = image_listing(images_path)
     mean_values = []
-    areas = []
     for image_name, image in images.items():
-        mean_temp, areas_temp = calculate_mean_value_and_areas(process_tif(image_name,image, output_path, roi_high, roi_low), image_name, output_path, 20)
-        mean_values.extend(mean_temp)
-        areas.extend(areas_temp)
-    print(f'Areas calculated: {len(areas)}, {plt.average(areas)}')
+        mean_values.extend(calculate_mean_value(process_tif(image_name,image, output_path, roi_high, roi_low), image_name, output_path))
     with open(f'{output_path}/mean_values.csv', 'w') as f:
         for value in mean_values:
-            f.write(str(value))
-            f.write(';')
-    with open(f'{output_path}/areas.csv', 'w') as f:
-        for value in areas:
             f.write(str(value))
             f.write(';')
                            
