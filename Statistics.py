@@ -10,24 +10,33 @@ from scipy.stats import ttest_ind
 
 def plot_and_stats(yaml_file, measurement_name):
     all_data = pd.DataFrame(columns=["strain", measurement_name])
+    particle_counts = {}
 
     with open(yaml_file) as f:
         measurements = yaml.safe_load(f)
         for strain, measurements_list in measurements.items():
             for measurement in measurements_list:
+                i = 0
                 with open (measurement) as csvfile:
                     data=csvfile.read()
                     data = data.split(';')
                     for particle in data:
                         try:
+                            i += 1
                             particle = float(particle)
                             all_data.loc[len(all_data)] = {'strain': strain, measurement_name:particle}
                         except:
                             pass
-
+                    particle_counts[strain] = i
     sns.catplot(data=all_data, x="strain", y=measurement_name, hue="strain", kind="violin")
-    plt.show()
+    plt.xticks(rotation=90)
     plt.savefig(f"{measurement_name}_violin_plot.png")
+    plt.show()
+    sns.barplot(x=list(particle_counts.keys()), y=list(particle_counts.values()))
+    plt.xticks(rotation=90)
+    plt.ylabel('Number of particles analyzed')
+    plt.savefig(f"{measurement_name}_particle_count.png")
+    plt.show()
 
     # One-way ANOVA
     groups = [group[measurement_name].values for name, group in all_data.groupby("strain")]
@@ -54,12 +63,12 @@ def plot_and_stats(yaml_file, measurement_name):
     # Plot the p-value table as a heatmap
     plt.figure(figsize=(8, 6))
     sns.heatmap(pval_matrix, annot=True, fmt=".4f", cmap="magma", cbar_kws={"label": "p-value"})
-    plt.title("Pairwise p-value table (t-test)")
+    plt.title(f"Pairwise p-value table (t-test) {measurement_name}")
     plt.ylabel("Strain")
     plt.xlabel("Strain")
     plt.tight_layout()
-    plt.show()
     plt.savefig(f"{measurement_name}_pvalue_heatmap.png")
+    plt.show()
 
 def main():
     yaml_file = 'csvpaths.yaml'
