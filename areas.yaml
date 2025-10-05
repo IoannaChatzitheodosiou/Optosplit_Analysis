@@ -1,0 +1,115 @@
+# 22L:
+# - .\scriptfinalresults\22Lout2\areas.csv
+
+# RML:
+# - .\scriptfinalresults\RMLout2\areas.csv
+
+# ME7:
+# - .\scriptfinalresults\ME7out2\areas.csv
+
+# ME7_1:
+# - .\pmsa_data\ME71outnew\areas.csv
+
+# ME7_2:
+# - .\pmsa_data\ME72outnew\areas.csv
+
+# ME7_3:
+# - .\pmsa_data\ME73outnew\areas.csv
+
+# ME7_4:
+# - .\pmsa_data\ME74outnew\areas.csv
+
+RML:
+- .\scriptfinalresults\RMLout2\areas.csv
+
+# Gen 1:
+#  - .\serial_pmca_all\D2out2\areas.csv
+#  - .\serial_pmca_all\B2out2\areas.csv
+
+# Gen 2:
+#  - .\serial_pmca_all\D3out2\areas.csv
+#  - .\serial_pmca_all\B3out2\areas.csv
+
+# Gen 3:
+#  - .\serial_pmca_all\D4out2\areas.csv
+#  - .\serial_pmca_all\B4out2\areas.csv
+
+# Gen 4:
+#  - .\serial_pmca_all\D5out2\areas.csv
+#  - .\serial_pmca_all\B5out2\areas.csv
+
+# Gen 5:
+#  - .\serial_pmca_all\D6out2\areas.csv
+#  - .\serial_pmca_all\B6out2\areas.csv
+
+# Gen 6:
+#  - .\serial_pmca_all\D7out2\areas.csv
+#  - .\serial_pmca_all\B7out2\areas.csv
+
+# Gen 7:
+#  - .\serial_pmca_all\D8out2\areas.csv
+#  - .\serial_pmca_all\B8out2\areas.csv
+
+# Gen 8:
+#  - .\serial_pmca_all\D9out2\areas.csv
+#  - .\serial_pmca_all\B9out2\areas.csv
+
+# Gen 9:
+#  - .\serial_pmca_all\D10out2\areas.csv
+#  - .\serial_pmca_all\B10out2\areas.csv
+
+# Gen 10:
+#  - .\serial_pmca_all\D11out2\areas.csv
+#  - .\serial_pmca_all\B11out2\areas.csv
+
+
+Gen 1D:
+ - .\serial_pmca_all\D2out2\areas.csv
+
+Gen 1B:
+ - .\serial_pmca_all\B2out2\areas.csv
+
+Gen 2D:
+ - .\serial_pmca_all\D3out2\areas.csv
+
+Gen 2B:
+ - .\serial_pmca_all\B3out2\areas.csv
+
+Gen 3D:
+ - .\serial_pmca_all\D4out2\areas.csv
+Gen 3B:
+ - .\serial_pmca_all\B4out2\areas.csv
+
+Gen 4D:
+ - .\serial_pmca_all\D5out2\areas.csv
+Gen 4B:
+ - .\serial_pmca_all\B5out2\areas.csv
+
+Gen 5D:
+ - .\serial_pmca_all\D6out2\areas.csv
+Gen 5B:
+ - .\serial_pmca_all\B6out2\areas.csv
+
+Gen 6D:
+ - .\serial_pmca_all\D7out2\areas.csv
+Gen 6B:
+ - .\serial_pmca_all\B7out2\areas.csv
+
+Gen 7D:
+ - .\serial_pmca_all\D8out2\areas.csv
+Gen 7B:
+ - .\serial_pmca_all\B8out2\areas.csv
+
+Gen 8D:
+ - .\serial_pmca_all\D9out2\areas.csv
+Gen 8B:
+ - .\serial_pmca_all\B9out2\areas.csv
+
+Gen 9D:
+ - .\serial_pmca_all\D10out2\areas.csv
+Gen 9B:
+ - .\serial_pmca_all\B10out2\areas.csv
+Gen 10D:
+ - .\serial_pmca_all\D11out2\areas.csv
+Gen 10B:
+ - .\serial_pmca_all\B11out2\areas.csv

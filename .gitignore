@@ -5,3 +5,5 @@
 !.gitignore
 !*.py
 !README.md
+!csvpaths.yaml
+!areas.yaml
