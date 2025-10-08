@@ -46,11 +46,15 @@ def plot_and_stats(yaml_file, measurement_name):
 
     print(f"One-way ANOVA:\nF-statistic = {f_stat:.4f}, p-value = {p_value:.4g}")
 
-    g = sns.catplot(data=all_data, x="strain", y=measurement_name, hue="strain", kind='box', palette=strains_palette, showcaps=True, boxprops={'facecolor':'none', "zorder": 1},whiskerprops={'zorder': 1},
-        medianprops={'zorder': 2})
+    g = sns.catplot(data=all_data, x="strain", y=measurement_name, hue="strain", kind='swarm', palette=strains_palette)
     g.fig.set_size_inches(8, 8)
     ax = g.ax
-    sns.swarmplot(data=all_data, x="strain", y=measurement_name, hue="strain", dodge=False, palette=strains_palette, size=3, ax=ax, zorder=3)
+  
+    # Show the median as a black line for each strain
+    medians = all_data.groupby("strain")[measurement_name].median()
+    for i, strain in enumerate(all_data['strain'].unique()):
+        median = medians[strain]
+        ax.hlines(median, i - 0.2, i + 0.2, color='black', linewidth=4, zorder=5, alpha=0.5)
 
 
     # Fit linear regression
@@ -65,11 +69,9 @@ def plot_and_stats(yaml_file, measurement_name):
     ax.plot(list(strain_to_num.values()), y_pred, color='black', linewidth=2, label='Linear regression')
     ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 
-    # Show the equation on the plot
-    coef = model.coef_
-    intercept = model.intercept_
-    equation = f"y = {coef[0]:.3f}x + {intercept:.3f}"
-    ax.text(0.15, 0.10, equation, transform=ax.transAxes, fontsize=10, 
+   # Show the R squared value on the plot instead of the equation
+    r_squared = model.score(X, y)
+    ax.text(0.20, 0.10, f"$R^2$ = {r_squared:.3f}", transform=ax.transAxes, fontsize=10, 
             verticalalignment='top', horizontalalignment='right',
             bbox=dict(facecolor='white', alpha=0.7))
 
