@@ -165,7 +165,7 @@ def main():
     mean_values = []
     areas = []
     for image_name, image in images.items():
-        mean_temp, areas_temp = calculate_mean_value_and_areas(process_tif(image_name,image, output_path, roi_high, roi_low), image_name, output_path, 20)
+        mean_temp, areas_temp = calculate_mean_value_and_areas(process_tif(image_name,image, output_path, roi_high, roi_low), image_name, output_path, 10)
         mean_values.extend(mean_temp)
         areas.extend(areas_temp)
     print(f'Areas calculated: {len(areas)}, {plt.average(areas)}')
