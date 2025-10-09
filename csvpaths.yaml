@@ -1,63 +1,63 @@
 
 # RML High:
-# - ./newdata/251001/RML-H/out3/mean_values.csv
+# - ./newdata/251001/RML-H/out2/mean_values.csv
 
 # Gen 1 High: 
-#  - ./newdata/250930/1-H/out3/mean_values.csv
+#  - ./newdata/250930/1-H/out2/mean_values.csv
  
 # Gen 2 High:
-#  - ./newdata/250930/2-H/out3/mean_values.csv
+#  - ./newdata/250930/2-H/out2/mean_values.csv
 
 # Gen 3 High:
-#  - ./newdata/250929/3-H/out3/mean_values.csv
+#  - ./newdata/250929/3-H/out2/mean_values.csv
 
 # Gen 4 High:
-#  - ./newdata/250929/4-H/out3/mean_values.csv
+#  - ./newdata/250929/4-H/out2/mean_values.csv
 
 # Gen 5 High:
-#   - ./newdata/250930/5-H/out3/mean_values.csv
+#   - ./newdata/250930/5-H/out2/mean_values.csv
 
 # Gen 7 High:
-#  - ./newdata/250930/7-H/out3/mean_values.csv
+#  - ./newdata/250930/7-H/out2/mean_values.csv
 
 # Gen 8 High:
-#   - ./newdata/250930/8-H/out3/mean_values.csv
+#   - ./newdata/250930/8-H/out2/mean_values.csv
 
 # Gen 9 High:
-#  - ./newdata/251001/9-H/out3/mean_values.csv
+#  - ./newdata/251001/9-H/out2/mean_values.csv
 
 # Gen 10 High:
-#   - ./newdata/251001/10-H/out3/mean_values.csv
+#   - ./newdata/251001/10-H/out2/mean_values.csv
 
 RML Low:
-- ./newdata/251001/RML-L/out3/mean_values.csv
+- ./newdata/251001/RML-L/out2/mean_values.csv
 
 Gen 1 Low:
-  - ./newdata/250930/1-L/out3/mean_values.csv
+  - ./newdata/250930/1-L/out2/mean_values.csv
 
 Gen 2 Low:
-  - ./newdata/250930/2-L/out3/mean_values.csv
+  - ./newdata/250930/2-L/out2/mean_values.csv
 
 Gen 3 Low:
-  - ./newdata/250929/3-L/out3/mean_values.csv
+  - ./newdata/250929/3-L/out2/mean_values.csv
 
 Gen 4 Low:
-  - ./newdata/250929/4-L/out3/mean_values.csv
+  - ./newdata/250929/4-L/out2/mean_values.csv
 
 Gen 5 Low:
-    - ./newdata/250930/5-L/out3/mean_values.csv
+    - ./newdata/250930/5-L/out2/mean_values.csv
 
 Gen 6 Low:
-  - ./newdata/250930/6-L/out3/mean_values.csv
+  - ./newdata/250930/6-L/out2/mean_values.csv
 
 Gen 7 Low:
-  - ./newdata/250930/7-L/out3/mean_values.csv
+  - ./newdata/250930/7-L/out2/mean_values.csv
 
 Gen 8 Low:
-   - ./newdata/250930/8-L/out3/mean_values.csv
+   - ./newdata/250930/8-L/out2/mean_values.csv
 
 Gen 9 Low:
-  - ./newdata/251001/9-L/out3/mean_values.csv
+  - ./newdata/251001/9-L/out2/mean_values.csv
 
 Gen 10 Low:
-   - ./newdata/251001/10-L/out3/mean_values.csv
+   - ./newdata/251001/10-L/out2/mean_values.csv
