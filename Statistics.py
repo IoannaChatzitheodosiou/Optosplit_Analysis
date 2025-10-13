@@ -148,9 +148,7 @@ def plot_and_stats(yaml_file, measurement_name):
     # Plot the p-value table as a heatmap
     plt.figure(figsize=(8, 6))
     sns.heatmap(dunn_results.loc[custom_order, custom_order], annot=True, fmt=".4f", cmap="magma", cbar_kws={"label": "p-value"})
-    plt.title(f"Ad hoc comparisson (Dunn-Bonferroni) {measurement_name}")
-    plt.ylabel("Strain")
-    plt.xlabel("Strain")
+    plt.title(f"Post hoc comparisson (Dunn-Bonferroni) {measurement_name}")
     plt.tight_layout()
     plt.savefig(f"{measurement_name}_pvalue_heatmap.pdf")
     plt.show()
