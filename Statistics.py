@@ -63,7 +63,7 @@ def plot_and_stats(yaml_file, measurement_name):
     print(f"Kruskal-Wallis test:\nH-statistic = {h_stat:.4f}, p-value = {p_value:.4g}")
 
 
-    g = sns.catplot(data=all_data, x="strain", y=measurement_name, hue="strain", kind='swarm', palette=strains_palette)
+    g = sns.catplot(data=all_data, x="strain", y=measurement_name, hue="strain", kind='swarm', palette=strains_palette, size=2)
     g.fig.set_size_inches(8, 8)
     ax = g.ax
 

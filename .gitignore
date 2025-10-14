@@ -3,7 +3,7 @@
 
 # But not these files...
 !.gitignore
-!*.py
+!Imageanalysis.py
 !README.md
 !csvpaths.yaml
 !areas.yaml
