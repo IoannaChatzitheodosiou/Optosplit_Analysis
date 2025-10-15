@@ -11,6 +11,7 @@ from pystackreg import StackReg
 import tifffile
 import sys
 import csv
+import yaml
 
 
 def image_listing(datapath):  #function that reads your images from the folder
@@ -151,6 +152,9 @@ def calculate_mean_value_and_areas(image, image_name, output_path, contour_thres
     return mean_values, areas
 
 def main():
+    with open ("settings.yaml") as settingfile:
+        settings = yaml.safe_load(settingfile)
+        particle_size_threshold = settings['particle_size_threshold']
     if len(sys.argv)!=4:
         print(f'Number of arguments expected: 4. Number of arguments provided {len(sys.argv)}')
         images_path = input('Images path: ')
@@ -165,7 +169,7 @@ def main():
     mean_values = []
     areas = []
     for image_name, image in images.items():
-        mean_temp, areas_temp = calculate_mean_value_and_areas(process_tif(image_name,image, output_path, roi_high, roi_low), image_name, output_path, 20)
+        mean_temp, areas_temp = calculate_mean_value_and_areas(process_tif(image_name,image, output_path, roi_high, roi_low), image_name, output_path, particle_size_threshold)
         mean_values.extend(mean_temp)
         areas.extend(areas_temp)
     print(f'Areas calculated: {len(areas)}, {plt.average(areas)}')

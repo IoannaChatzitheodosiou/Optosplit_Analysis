@@ -1,13 +1,13 @@
 #Original Strain Analysis
 
 RML :
-- ./251014_Original_Strain_Analysis_high/RML/areas.csv
+- ./lowthreshout/RML/areas.csv
 
 ME7 :
-- ./251014_Original_Strain_Analysis_high/ME7/areas.csv
+- ./lowthreshout/ME7/areas.csv
 
 22L :
-- ./251014_Original_Strain_Analysis_high/22L/areas.csv
+- ./lowthreshout/22L/areas.csv
 
 #Older Samples
 
