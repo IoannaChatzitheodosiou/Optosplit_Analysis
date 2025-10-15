@@ -62,7 +62,7 @@ def plot_and_stats(yaml_file, measurement_name):
         for line in shapiro_results:
             txtfile.write(line + "\n")
 
-    if non_normally_distributed = 0:
+    if non_normally_distributed == 0:
         # One-way ANOVA
         groups = [group[measurement_name].values for name, group in all_data.groupby("strain")]
         f_stat, p_value = f_oneway(*groups)
