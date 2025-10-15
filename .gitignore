@@ -9,4 +9,5 @@
 !csvpaths.yaml
 !areas.yaml
 !colours.yaml
+!settings.yaml
 !run_imageanalysis.sh

@@ -1,50 +1,61 @@
-#Older Samples
+#Original RML / ME7 / 22L preps
 
 RML :
-- ./newdata/251001/RML-L/outfinal/areas.csv
+- ./251014_Original_Strain_Analysis/RML/areas.csv
 
-Gen  1 :
-- .\serial_pmca_all\B2\outfinal\areas.csv
-- .\serial_pmca_all\D2\outfinal\areas.csv
+ME7 :
+- ./251014_Original_Strain_Analysis/ME7/areas.csv
 
-Gen  2 :
-- .\serial_pmca_all\B3\outfinal\areas.csv
-- .\serial_pmca_all\D3\outfinal\areas.csv
+22L :
+- ./251014_Original_Strain_Analysis/22L/areas.csv
 
-Gen  3 :
-- .\serial_pmca_all\B4\outfinal\areas.csv
-- .\serial_pmca_all\D4\outfinal\areas.csv
+# #Older Samples
 
-Gen  4 :
-- .\serial_pmca_all\B5\outfinal\areas.csv
-- .\serial_pmca_all\D5\outfinal\areas.csv
+# RML :
+# - ./newdata/251001/RML-L/outfinal/areas.csv
 
-Gen  5 :
-- .\serial_pmca_all\B6\outfinal\areas.csv
-- .\serial_pmca_all\D6\outfinal\areas.csv
+# Gen  1 :
+# - .\serial_pmca_all\B2\outfinal\areas.csv
+# - .\serial_pmca_all\D2\outfinal\areas.csv
 
-Gen  6 :
-- .\serial_pmca_all\B7\outfinal\areas.csv
-- .\serial_pmca_all\D7\outfinal\areas.csv
+# Gen  2 :
+# - .\serial_pmca_all\B3\outfinal\areas.csv
+# - .\serial_pmca_all\D3\outfinal\areas.csv
 
-Gen  7 :
-- .\serial_pmca_all\B8\outfinal\areas.csv
-- .\serial_pmca_all\D8\outfinal\areas.csv
+# Gen  3 :
+# - .\serial_pmca_all\B4\outfinal\areas.csv
+# - .\serial_pmca_all\D4\outfinal\areas.csv
 
-Gen  8 :
-- .\serial_pmca_all\B9\outfinal\areas.csv
-- .\serial_pmca_all\D9\outfinal\areas.csv
+# Gen  4 :
+# - .\serial_pmca_all\B5\outfinal\areas.csv
+# - .\serial_pmca_all\D5\outfinal\areas.csv
 
-Gen  9 :
-- .\serial_pmca_all\B10\outfinal\areas.csv
-- .\serial_pmca_all\D10\outfinal\areas.csv
+# Gen  5 :
+# - .\serial_pmca_all\B6\outfinal\areas.csv
+# - .\serial_pmca_all\D6\outfinal\areas.csv
 
-Gen 10 :
-- .\serial_pmca_all\B11\outfinal\areas.csv
-- .\serial_pmca_all\D11\outfinal\areas.csv
+# Gen  6 :
+# - .\serial_pmca_all\B7\outfinal\areas.csv
+# - .\serial_pmca_all\D7\outfinal\areas.csv
 
-RML :
-- ./newdata/251001/RML-L/outfinal/areas.csv
+# Gen  7 :
+# - .\serial_pmca_all\B8\outfinal\areas.csv
+# - .\serial_pmca_all\D8\outfinal\areas.csv
+
+# Gen  8 :
+# - .\serial_pmca_all\B9\outfinal\areas.csv
+# - .\serial_pmca_all\D9\outfinal\areas.csv
+
+# Gen  9 :
+# - .\serial_pmca_all\B10\outfinal\areas.csv
+# - .\serial_pmca_all\D10\outfinal\areas.csv
+
+# Gen 10 :
+# - .\serial_pmca_all\B11\outfinal\areas.csv
+# - .\serial_pmca_all\D11\outfinal\areas.csv
+
+# RML :
+# - ./newdata/251001/RML-L/outfinal/areas.csv
 
 # ## Low PK samples
 

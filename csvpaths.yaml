@@ -1,45 +1,54 @@
-#Old samples
+#Original Strain Analysis
+
+RML :
+- ./251014_Original_Strain_Analysis_high/RML/areas.csv
+
+ME7 :
+- ./251014_Original_Strain_Analysis_high/ME7/areas.csv
+
+22L :
+- ./251014_Original_Strain_Analysis_high/22L/areas.csv
 
 #Older Samples
 
-RML :
-- ./newdata/251001/RML-L/outfinal/mean_values.csv
+# RML :
+# - ./newdata/251001/RML-L/outfinal/mean_values.csv
 
-Gen  1 :
-- ./merged_all/1_all.csv
+# Gen  1 :
+# - ./merged_all/1_all.csv
 
-Gen  2 :
-- ./merged_all/2_all.csv
+# Gen  2 :
+# - ./merged_all/2_all.csv
 
-Gen  3 :
-- ./merged_all/3_all.csv
+# Gen  3 :
+# - ./merged_all/3_all.csv
 
-Gen  4 :
-- ./merged_all/4_all.csv
+# Gen  4 :
+# - ./merged_all/4_all.csv
 
-Gen  5 :
-- ./merged_all/5_all.csv
+# Gen  5 :
+# - ./merged_all/5_all.csv
 
-Gen  6 :
-- ./merged_all/6_all.csv
+# Gen  6 :
+# - ./merged_all/6_all.csv
 
-Gen  7 :
-- ./merged_all/7_all.csv
+# Gen  7 :
+# - ./merged_all/7_all.csv
 
-Gen  8 :
-# - .\serial_pmca_all\B9\outfinal\mean_values.csv
-- ./merged_all/8_all.csv
+# Gen  8 :
+# # - .\serial_pmca_all\B9\outfinal\mean_values.csv
+# - ./merged_all/8_all.csv
 
-Gen  9 :
-# - .\serial_pmca_all\B10\outfinal\mean_values.csv
-- ./merged_all/9_all.csv
+# Gen  9 :
+# # - .\serial_pmca_all\B10\outfinal\mean_values.csv
+# - ./merged_all/9_all.csv
 
-Gen 10 :
-# - .\serial_pmca_all\B11\outfinal\mean_values.csv
-- ./merged_all/10_all.csv
+# Gen 10 :
+# # - .\serial_pmca_all\B11\outfinal\mean_values.csv
+# - ./merged_all/10_all.csv
 
-RML :
-- ./newdata/251001/RML-L/outfinal/mean_values.csv
+# RML :
+# - ./newdata/251001/RML-L/outfinal/mean_values.csv
 
 
 # # ## Low PK samples
