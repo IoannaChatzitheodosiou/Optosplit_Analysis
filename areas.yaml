@@ -1,16 +1,15 @@
-#Original RML / ME7 / 22L preps
+# Original RML / ME7 / 22L preps
 
-RML :
-- ./lowthreshout/RML/areas.csv
+# RML :
+# - ./lowthreshout/RML/areas.csv
 
-ME7 :
-- ./lowthreshout/ME7/areas.csv
+# ME7 :
+# - ./lowthreshout/ME7/areas.csv
 
-22L :
-- ./lowthreshout/22L/areas.csv
+# 22L :
+# - ./lowthreshout/22L/areas.csv
 
 # #Older Samples
-
 # RML :
 # - ./newdata/251001/RML-L/outfinal/areas.csv
 
@@ -55,39 +54,39 @@ ME7 :
 # - .\serial_pmca_all\D11\outfinal\areas.csv
 
 # RML :
-# - ./newdata/251001/RML-L/outfinal/areas.csv
+# - ./All_paper_data/RML-L/out/areas.csv
 
 # ## Low PK samples
 
 # Gen  1 :
-#   - ./newdata/250930/1-L/outfinal/areas.csv
+#   - ./All_paper_data/1-L/out/areas.csv
  
 # Gen  2 :
-#   - ./newdata/250930/2-L/outfinal/areas.csv
+#   - ./All_paper_data/2-L/out/areas.csv
 
 # Gen  3 :
-#   - ./newdata/250929/3-L/outfinal/areas.csv
+#   - ./All_paper_data/3-L/out/areas.csv
 
 # Gen  4 :
-#   - ./newdata/250929/4-L/outfinal/areas.csv
+#   - ./All_paper_data/4-L/out/areas.csv
 
 # Gen  5 :
-#     - ./newdata/250930/5-L/outfinal/areas.csv
+#   - ./All_paper_data/5-L/out/areas.csv
 
 # Gen  6 :
-#   - ./newdata/250930/6-L/outfinal/areas.csv
+#   - ./All_paper_data/6-L/out/areas.csv
 
 # Gen  7 :
-#   - ./newdata/250930/7-L/outfinal/areas.csv
+#   - ./All_paper_data/7-L/out/areas.csv
 
 # Gen  8 :
-#    - ./newdata/250930/8-L/outfinal/areas.csv
+#    - ./All_paper_data/8-L/out/areas.csv
 
 # Gen  9 :
-#   - ./newdata/251001/9-L/outfinal/areas.csv
+#   - ./All_paper_data/9-L/out/areas.csv
 
 # Gen 10 :
-#    - ./newdata/251001/10-L/outfinal/areas.csv
+#    - ./All_paper_data/10-L/out/areas.csv
 
 # ### High PK samples
 
@@ -120,4 +119,37 @@ ME7 :
 
 # Gen 10 :
 #   - ./newdata/251001/10-H/outfinal/areas.csv
+
+###Repeats
+
+RML 1:
+- ./repeats/251202/RML/out/areas.csv
+
+# RML_2:
+# - ./repeats/260129/RML/out/areas.csv
+
+RML_5X:
+- ./repeats/251202/RML_5X/out/areas.csv
+
+RML_2.5X:
+- ./repeats/251202/RML_2.5X/out/areas.csv
+
+RML_1.25X:
+- ./repeats/251202/RML_1.25X/out/areas.csv
+
+ME7_1:
+- ./repeats/251202/ME7/out/areas.csv
+
+# ME7_2:
+# - ./repeats/260129/ME7/out/areas.csv
+
+22L_1:
+- ./repeats/251202/22L/out/areas.csv
+
+22L_2:
+- ./repeats/251202/22L_Ben/out/areas.csv
+
+# 22L_3:
+# - ./repeats/260129/22L/out/areas.csv
+
 

@@ -10,6 +10,75 @@ from scikit_posthocs import posthoc_dunn
 from sklearn.linear_model import LinearRegression
 
 
+class PlotsAndStats:
+    def __init__(self, data_paths, measurement_name, colours_file, settings_file):
+        self.data_paths = data_paths
+        self.measurement_name = measurement_name
+        self.colours = self.load_colours(colours_file)
+        self.settings = self.load_settings(settings_file)
+        self.all_data = pd.DataFrame(columns=["strain", measurement_name])
+        self.particle_counts = {}
+
+    def load_colours(self, colours_file):
+        with open(colours_file) as colorfile:
+            return yaml.safe_load(colorfile)
+
+    def load_settings(self, settings_file):
+        with open(settings_file) as settingfile:
+            return yaml.safe_load(settingfile)
+        
+    def load_data(self):
+        with open(self.data_paths) as f:
+            measurements = yaml.safe_load(f)
+            for strain, measurements_list in measurements.items():
+                for measurement in measurements_list:
+                    i = 0
+                    with open (measurement) as csvfile:
+                        data=csvfile.read()
+                        data = data.split(';')
+                        for particle in data:
+                            try:
+                                i += 1
+                                particle = float(particle)
+                                self.all_data.loc[len(self.all_data)] = {'strain': strain, self.measurement_name:particle}
+                            except:
+                                pass
+                        self.particle_counts[strain] = i
+    def generate_palette(self):
+        strains_in_data = self.all_data['strain'].unique()
+        return {strain: self.colours.get(strain, "#333333") for strain in strains_in_data}
+
+    def normal_distribution_test(self):
+        # Check normality for each group using Shapiro-Wilk test
+        print("\nShapiro-Wilk normality test per strain:")
+        shapiro_results = []
+        non_normally_distributed = 0
+        for strain, group in self.all_data.groupby("strain"):
+            stat, p = shapiro(group[self.measurement_name].values)
+            print(f"{strain}: W={stat:.4f}, p-value={p:.4g}")
+            shapiro_results.append(f"{strain}: W={stat:.4f}, p-value={p:.4g}")
+            if p < 0.05:
+                non_normally_distributed += 1
+
+        # Export Shapiro-Wilk results to txt
+        with open(f"{self.measurement_name}_shapiro_wilk_2  .txt", "w") as txtfile:
+            txtfile.write("Shapiro-Wilk normality test per strain:\n")
+            for line in shapiro_results:
+                txtfile.write(line + "\n")
+
+        if non_normally_distributed == 0:
+            # One-way ANOVA
+            groups = [group[self.measurement_name].values for name, group in self.all_data.groupby("strain")]
+            f_stat, p_value = f_oneway(*groups)
+            print(f"One-way ANOVA:\nF-statistic = {f_stat:.4f}, p-value = {p_value:.4g}")
+        else:
+            # Kruskal-Wallis test (replaces ANOVA)
+            groups = [group[self.measurement_name].values for name, group in self.all_data.groupby("strain")]
+            h_stat, p_value = kruskal(*groups)
+
+            print(f"Kruskal-Wallis test:\nH-statistic = {h_stat:.4f}, p-value = {p_value:.4g}")
+
+                    
 def plot_and_stats(yaml_file, measurement_name):
     all_data = pd.DataFrame(columns=["strain", measurement_name])
     particle_counts = {}
@@ -75,7 +144,7 @@ def plot_and_stats(yaml_file, measurement_name):
         print(f"Kruskal-Wallis test:\nH-statistic = {h_stat:.4f}, p-value = {p_value:.4g}")
 
 
-    g = sns.catplot(data=all_data, x="strain", y=measurement_name, hue="strain", kind='swarm', palette=strains_palette, size=2)
+    g = sns.catplot(data=all_data, x="strain", y=measurement_name, hue="strain", kind='swarm', palette=strains_palette)
     g.fig.set_size_inches(8, 8)
     ax = g.ax
 
@@ -157,6 +226,9 @@ def main():
     yaml_file = 'areas.yaml'
     measurement_name = 'Particle Size'
     plot_and_stats(yaml_file, measurement_name)
+    plots = PlotsAndStats('areas.yaml', 'Particle Size', 'colours.yaml', 'settings.yaml')
+    plots.load_data()
+    plots.normal_distribution_test()
 
 if __name__ == "__main__":
     main()
