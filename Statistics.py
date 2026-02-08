@@ -144,9 +144,9 @@ def plot_and_stats(yaml_file, measurement_name):
         print(f"Kruskal-Wallis test:\nH-statistic = {h_stat:.4f}, p-value = {p_value:.4g}")
 
 
-    g = sns.catplot(data=all_data, x="strain", y=measurement_name, hue="strain", kind='swarm', palette=strains_palette)
-    g.fig.set_size_inches(8, 8)
-    ax = g.ax
+    plt.figure(figsize=(8, 8))
+    sns.violinplot(data=all_data, x="strain", y=measurement_name, hue="strain", palette=strains_palette, legend=False)
+    ax = plt.gca()
 
     # Rotate x labels
     ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
@@ -155,7 +155,7 @@ def plot_and_stats(yaml_file, measurement_name):
     medians = all_data.groupby("strain")[measurement_name].median()
     for i, strain in enumerate(all_data['strain'].unique()):
         median = medians[strain]
-        ax.hlines(median, i - 0.2, i + 0.2, color='black', linewidth=4, zorder=5, alpha=0.5)
+        ax.hlines(median, i - 0.2, i + 0.2, color='red', linewidth=2, zorder=5, alpha=0.7, linestyles='--')
 
     if linear_regression==True:
         # Fit linear regression
@@ -181,9 +181,9 @@ def plot_and_stats(yaml_file, measurement_name):
 
 
 
-    # Set the title using the FacetGrid's figure
-    g.fig.suptitle(f"{measurement_name}\nH-statistic = {h_stat:.4f}, p-value = {p_value:.4g} (Kruskal-Wallis test)", fontsize=12, y=0.95)
-    g.fig.subplots_adjust(top=0.88)
+    # Set the title
+    plt.suptitle(f"{measurement_name}\nH-statistic = {h_stat:.4f}, p-value = {p_value:.4g} (Kruskal-Wallis test)", fontsize=12, y=0.95)
+    plt.subplots_adjust(top=0.88)
 
     plt.tight_layout()
     plt.savefig(f"{measurement_name}_scatterplot.pdf")

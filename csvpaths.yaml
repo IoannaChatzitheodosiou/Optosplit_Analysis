@@ -115,43 +115,39 @@
 # Gen 10 :
 #   - ./newdata/251001/10-H/outfinal/mean_values.csv
 
-###Repeats
+###strain_analysis_RML_ME7_22L
 
-RML_1:
-- ./repeats/251202/RML/out/mean_values.csv
+#251017
+
+# RML_1: 
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/251017/RML/outml/mean_values.csv
+
+# ME7_1:
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/251017/ME7/outml/mean_values.csv
+
+
+#260129
 
 RML_2:
-- ./repeats/260129/RML/out/mean_values.csv
-
-RML_5X:
-- ./repeats/251202/RML_5X/out/mean_values.csv
-
-RML_2.5X:
-- ./repeats/251202/RML_2.5X/out/mean_values.csv
-
-RML_1.25X:
-- ./repeats/251202/RML_1.25X/out/mean_values.csv
-
-RML_3:
-- ./repeats/251017/RML/out/mean_values.csv
-
-ME7_1:
-- ./repeats/251202/ME7/out/mean_values.csv
+- /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/260206/rml_2601/out_ml/mean_values.csv
 
 ME7_2:
-- ./repeats/260129/ME7/out/mean_values.csv
-
-ME7_3:
-- ./repeats/251017/ME7/out/mean_values.csv
+- /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/260206/ME7_2601/out_ml/mean_values.csv
 
 22L_1:
-- ./repeats/251202/22L/out/mean_values.csv
+- /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/260206/22L_2601/out_ml/mean_values.csv
+
+
+###251017
+
+RML_3:
+- /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/260206/RML_250115/out_ml/mean_values.csv
+
+ME7_3:
+- /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/260206/ME7_250115/out_ml/mean_values.csv
 
 22L_2:
-- ./repeats/251202/22L_Ben/out/mean_values.csv
+- /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/260206/22L_B_250115/out_ml/mean_values.csv
 
 22L_3:
-- ./repeats/260129/22L/out/mean_values.csv
-
-22L_4:
-- ./repeats/251017/22L/out/mean_values.csv
+- /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/260206/22L_250115/out_ml/mean_values.csv

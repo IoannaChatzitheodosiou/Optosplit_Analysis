@@ -120,36 +120,57 @@
 # Gen 10 :
 #   - ./newdata/251001/10-H/outfinal/areas.csv
 
-###Repeats
+###strain_analysis_RML_ME7_22L
 
-RML 1:
-- ./repeats/251202/RML/out/areas.csv
+
+# #251017
+
+# RML_1: 
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_RML_ME7_22L/251017/RML/outml/areas.csv
+
+# ME7_1:
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_RML_ME7_22L/251017/ME7/outml/areas.csv
+
+# 22L_1:
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_RML_ME7_22L/251017/22L/out_ml/areas.csv
+
+#251202
 
 # RML_2:
-# - ./repeats/260129/RML/out/areas.csv
 
-RML_5X:
-- ./repeats/251202/RML_5X/out/areas.csv
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_RML_ME7_22L/251202/RML/out_ml/areas.csv
 
-RML_2.5X:
-- ./repeats/251202/RML_2.5X/out/areas.csv
+# RML_5X:
 
-RML_1.25X:
-- ./repeats/251202/RML_1.25X/out/areas.csv
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_RML_ME7_22L/251202/RML_5X/out_ml/areas.csv
 
-ME7_1:
-- ./repeats/251202/ME7/out/areas.csv
+# RML_2.5X:
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_RML_ME7_22L/251202/RML_2.5X/out_ml/areas.csv
+
+# RML_1.25X:
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_RML_ME7_22L/251202/RML_1.25X/out_ml/areas.csv
+
 
 # ME7_2:
-# - ./repeats/260129/ME7/out/areas.csv
 
-22L_1:
-- ./repeats/251202/22L/out/areas.csv
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_RML_ME7_22L/251202/ME7/out_ml/areas.csv
 
-22L_2:
-- ./repeats/251202/22L_Ben/out/areas.csv
+# 22L_2:
+
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_RML_ME7_22L/251202/22L/out_ml/areas.csv
 
 # 22L_3:
-# - ./repeats/260129/22L/out/areas.csv
+
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_RML_ME7_22L/251202/22L_Ben/out_ml/areas.csv
 
 
+###260129
+
+RML_3:
+- /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_RML_ME7_22L/260129/RML/out_ml/areas.csv
+
+ME7_3:
+- /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_RML_ME7_22L/260129/ME7/out_ml/areas.csv
+
+22L_4:
+- /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_RML_ME7_22L/260129/22L/out_ml/areas.csv

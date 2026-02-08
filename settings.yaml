@@ -1,14 +1,17 @@
 custom_order:
-  - "RML_1"
-  # - "RML_2"
-  - "RML_5X"
-  - "RML_2.5X"
-  - "RML_1.25X"
-  - "ME7_1"
-  # - "ME7_2"
+  # - "RML_1"
+  - "RML_2"
+  # - "RML_5X"
+  # - "RML_2.5X"
+  # - "RML_1.25X"
+  - "RML_3"
+  # - "ME7_1"
+  - "ME7_2"
+  - "ME7_3"
   - "22L_1"
   - "22L_2"
-  # - "22L_3"
+  - "22L_3"
+  # - "22L_4"
   # - "22L"
   # - "Gen  1"
   # - "Gen  2"
@@ -23,6 +26,6 @@ custom_order:
 
 linear_regression: "true"
 
-particle_size_threshold: 5
+particle_size_threshold: 3
 
 
