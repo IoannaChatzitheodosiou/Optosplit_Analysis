@@ -4,10 +4,10 @@
 # - ./lowthreshout/RML/areas.csv
 
 # ME7 :
-# - ./lowthreshout/ME7/areas.csv
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/240711/565/Tirf/me7/out/areas.csv
 
 # 22L :
-# - ./lowthreshout/22L/areas.csv
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/22L/out/areas.csv
 
 #Older Samples
 
@@ -126,28 +126,69 @@
 # - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/251017/ME7/outml/mean_values.csv
 
 
-#260129
+# #260129
 
-RML_2:
-- /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/260206/rml_2601/out_ml/mean_values.csv
+# RML_2:
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/260206/rml_2601/out_ml/mean_values.csv
 
-ME7_2:
-- /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/260206/ME7_2601/out_ml/mean_values.csv
+# ME7_2:
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/260206/ME7_2601/out_ml/mean_values.csv
 
-22L_1:
-- /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/260206/22L_2601/out_ml/mean_values.csv
+# 22L_1:
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/260206/22L_2601/out_ml/mean_values.csv
 
 
 ###251017
 
-RML_3:
-- /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/260206/RML_250115/out_ml/mean_values.csv
+# 
 
-ME7_3:
-- /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/260206/ME7_250115/out_ml/mean_values.csv
+# ##wavelength checks 
 
-22L_2:
-- /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/260206/22L_B_250115/out_ml/mean_values.csv
+# RML:
 
-22L_3:
-- /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/strain_analysis_quad/260206/22L_250115/out_ml/mean_values.csv
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/260217/RML/100/out_ml/mean_values.csv
+
+# ME7:
+
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/260217/ME7/100/out_ml/mean_values.csv
+# 22L: 
+
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/260217/22L/100/out_ml/mean_values.csv
+
+###30 - distinct sample
+
+# RML_1:
+
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/260303/RML/30/out_ml_nob/mean_values.csv
+
+# RML_2:
+
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/260303/RML_2/30/out_ml_nob/mean_values.csv
+# ME7_1:
+
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/260303/ME7/30/out_ml_nob/mean_values.csv
+
+# ME7_2:
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/260303/ME7_2/30/out_ml_nob/mean_values.csv
+
+# # 22L_1:
+# # - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/260303/22L/30/out_ml_nob/mean_values.csv
+
+# 22L_2:
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/260303/22L_2/30/out_ml_nob/mean_values.csv
+
+# # 22L_2_B:
+# 22L_1:
+# - /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/260303/22L_2_B/30/out_ml_nob/mean_values.csv
+
+#Iosif data
+
+22L:
+-  /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/260415/22L_out/mean_values.csv
+
+ME7:
+
+-  /Users/ioannachatzitheodosiou/Desktop/scripts/Optosplit_Analysis/260415/ME7_out/mean_values.csv
+
+
+

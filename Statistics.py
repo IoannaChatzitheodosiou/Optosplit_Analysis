@@ -19,6 +19,37 @@ class PlotsAndStats:
         self.all_data = pd.DataFrame(columns=["strain", measurement_name])
         self.particle_counts = {}
 
+    def remove_outliers(self, data, column, method='IQR', threshold=1.5):
+        """
+        Remove outliers from data using IQR method.
+        
+        Parameters:
+        - data: DataFrame containing the data
+        - column: Name of the column to check for outliers
+        - method: Method to use ('IQR' or 'zscore')
+        - threshold: Multiplier for IQR (default 1.5) or z-score threshold (default 3)
+        
+        Returns:
+        - DataFrame with outliers removed
+        """
+        if method == 'IQR':
+            cleaned_data = pd.DataFrame()
+            for strain, group in data.groupby('strain'):
+                Q1 = group[column].quantile(0.25)
+                Q3 = group[column].quantile(0.75)
+                IQR = Q3 - Q1
+                lower_bound = Q1 - threshold * IQR
+                upper_bound = Q3 + threshold * IQR
+                
+                filtered_group = group[(group[column] >= lower_bound) & (group[column] <= upper_bound)]
+                outliers_removed = len(group) - len(filtered_group)
+                print(f"{strain}: Removed {outliers_removed} outliers (lower bound: {lower_bound:.2f}, upper bound: {upper_bound:.2f})")
+                
+                cleaned_data = pd.concat([cleaned_data, filtered_group])
+            return cleaned_data
+        else:
+            return data
+
     def load_colours(self, colours_file):
         with open(colours_file) as colorfile:
             return yaml.safe_load(colorfile)
@@ -44,6 +75,11 @@ class PlotsAndStats:
                             except:
                                 pass
                         self.particle_counts[strain] = i
+        
+        # Remove outliers after loading all data
+        print("\nRemoving outliers using IQR method (threshold=1.5):")
+        self.all_data = self.remove_outliers(self.all_data, self.measurement_name)
+        
     def generate_palette(self):
         strains_in_data = self.all_data['strain'].unique()
         return {strain: self.colours.get(strain, "#333333") for strain in strains_in_data}
@@ -104,6 +140,25 @@ def plot_and_stats(yaml_file, measurement_name):
                         except:
                             pass
                     particle_counts[strain] = i
+        
+        # Remove outliers using IQR method
+        print("\nRemoving outliers using IQR method (threshold=1.5):")
+        cleaned_data = pd.DataFrame()
+        for strain, group in all_data.groupby('strain'):
+            Q1 = group[measurement_name].quantile(0.25)
+            Q3 = group[measurement_name].quantile(0.75)
+            IQR = Q3 - Q1
+            lower_bound = Q1 - 1.5 * IQR
+            upper_bound = Q3 + 1.5 * IQR
+            
+            filtered_group = group[(group[measurement_name] >= lower_bound) & (group[measurement_name] <= upper_bound)]
+            outliers_removed = len(group) - len(filtered_group)
+            print(f"{strain}: Removed {outliers_removed} outliers (lower bound: {lower_bound:.2f}, upper bound: {upper_bound:.2f})")
+            
+            cleaned_data = pd.concat([cleaned_data, filtered_group])
+        
+        all_data = cleaned_data
+        
         # Prepare palette using the colour_map for the strains present in the data
         strains_in_data = all_data['strain'].unique()
         strains_palette = {strain: colour_map.get(strain, "#333333") for strain in strains_in_data}
@@ -144,8 +199,47 @@ def plot_and_stats(yaml_file, measurement_name):
         print(f"Kruskal-Wallis test:\nH-statistic = {h_stat:.4f}, p-value = {p_value:.4g}")
 
 
+    # Plot up to 100 representative spots, preserving strain proportions.
+    max_spots = 1000
+    if len(all_data) > max_spots:
+        strain_counts = all_data['strain'].value_counts()
+        target_per_strain = (strain_counts / strain_counts.sum() * max_spots)
+        base_counts = np.floor(target_per_strain).astype(int)
+        remainders = target_per_strain - base_counts
+
+        for strain in strain_counts.index:
+            if base_counts[strain] == 0:
+                base_counts[strain] = 1
+
+        total_selected = int(base_counts.sum())
+
+        if total_selected > max_spots:
+            for strain in base_counts.sort_values(ascending=False).index:
+                if total_selected <= max_spots:
+                    break
+                if base_counts[strain] > 1:
+                    base_counts[strain] -= 1
+                    total_selected -= 1
+        elif total_selected < max_spots:
+            for strain in remainders.sort_values(ascending=False).index:
+                if total_selected >= max_spots:
+                    break
+                if base_counts[strain] < strain_counts[strain]:
+                    base_counts[strain] += 1
+                    total_selected += 1
+
+        sampled_groups = []
+        for strain, group in all_data.groupby('strain'):
+            n_select = min(int(base_counts.get(strain, 0)), len(group))
+            if n_select > 0:
+                sampled_groups.append(group.sample(n=n_select, random_state=42))
+
+        plot_data = pd.concat(sampled_groups, ignore_index=True)
+    else:
+        plot_data = all_data
+
     plt.figure(figsize=(8, 8))
-    sns.violinplot(data=all_data, x="strain", y=measurement_name, hue="strain", palette=strains_palette, legend=False)
+    sns.catplot(data=plot_data, x="strain", y=measurement_name, hue="strain", palette=strains_palette, legend=False)
     ax = plt.gca()
 
     # Rotate x labels
@@ -186,7 +280,10 @@ def plot_and_stats(yaml_file, measurement_name):
     plt.subplots_adjust(top=0.88)
 
     plt.tight_layout()
-    plt.savefig(f"{measurement_name}_scatterplot.pdf")
+    plt.savefig(f"{measurement_name}_scatterplot.svg")
+    plt.savefig(f"{measurement_name}_scatterplot.eps")
+
+    
     plt.show()
     plt.close()
 
@@ -194,7 +291,8 @@ def plot_and_stats(yaml_file, measurement_name):
     plt.xticks(rotation=90)
     plt.ylabel('Number of particles analyzed')
     plt.tight_layout()
-    plt.savefig(f"{measurement_name}_particle_count.pdf")
+    plt.savefig(f"{measurement_name}_particle_count.svg")
+    plt.savefig(f"{measurement_name}_particle_count.eps")
     plt.show()
     plt.close()
 
@@ -215,7 +313,9 @@ def plot_and_stats(yaml_file, measurement_name):
     sns.heatmap(dunn_results.loc[custom_order, custom_order], annot=True, fmt=".4f", cmap="magma", cbar_kws={"label": "p-value"})
     plt.title(f"Post hoc comparisson (Dunn-Bonferroni) {measurement_name}")
     plt.tight_layout()
-    plt.savefig(f"{measurement_name}_pvalue_heatmap.pdf")
+    plt.savefig(f"{measurement_name}_pvalue_heatmap.svg")
+    plt.savefig(f"{measurement_name}_pvalue_heatmap.eps")
+
     plt.show()
     plt.close()
 

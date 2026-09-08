@@ -11,16 +11,23 @@
 # Gen 10 : "#faf81c"     # yellow
 
 ## Original Strain Analysis
-RML_1 : "#7fc97f"      # green
-RML_2 : "#7fc97f"      # green
+# RML: "#7fc97f"      # green
+# RML_2: "#7fc97f"      # green
+
 # RML_5X : "#7fc97f"      # green
 # RML_2.5X : "#7fc97f"      # green
 # RML_1.25X : "#7fc97f"      # green
-RML_3: "#7fc97f"      # green
-ME7_1 : "#bcaff9"     # lilac
-ME7_2 : "#bcaff9"     # lilac
-ME7_3 : "#bcaff9"     # lilac
-22L_1 : "#85d2e1"     # light blue
-22L_2 : "#85d2e1"     # light blue
-22L_3 : "#85d2e1"     # light blue
+# RML_3: "#7fc97f"      # green
+ME7: "#7fc97f"      # green
+# ME7_2: "#bcaff9"     # lilac
+
+# ME7_2 : "#bcaff9"     # lilac
+# ME7_3 : "#bcaff9"     # lilac
+
+22L: "#85d2e1"     # light blue
+# 22L_2: "#85d2e1"     # light blue
+# 22L_2_B: "#85d2e1"     # light blue
+
+# 22L_2 : "#85d2e1"     # light blue
+# 22L_3 : "#85d2e1"     # light blue
 # 22L_4 : "#85d2e1"     # light blue
