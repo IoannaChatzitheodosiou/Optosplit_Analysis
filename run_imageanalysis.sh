@@ -11,7 +11,7 @@ else
     PYTHON_BIN="python"
 fi
 
-ROOT_DIR="/Volumes/Untitled/strain_characterization_data/training_dataset/22L/22L_animals_902704_902767_902758_902470_ic"
+ROOT_DIR="/Volumes/Untitled/strain_characterization_data/training_dataset/22L/I23897_22l/i23897_4uL"
 
 if ! "$PYTHON_BIN" -c "import cv2, numpy, pandas, tifffile, read_roi, pystackreg" >/dev/null 2>&1; then
     echo "Missing Python dependencies in: $PYTHON_BIN"
