@@ -4,11 +4,9 @@
 # But not these files...
 !.gitignore
 !Imageanalysis.py
-!Imageanalysis_ml.py
 !Statistics.py
 !README.md
 !csvpaths.yaml
 !areas.yaml
 !colours.yaml
 !settings.yaml
-!run_imageanalysis.sh
